@@ -1,4 +1,4 @@
-message,has_media,media_path,repeats
+message,has_media,media_path
 I can't read. so no.,false,
 I can't write.,false,
 I don't care.,false,
