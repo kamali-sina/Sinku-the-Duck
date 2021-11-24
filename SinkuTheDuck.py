@@ -4,6 +4,7 @@ import os
 import json
 from config import get_api
 from autoreply import check_mentions
+from Quacker import Quacker
 
 TIME_BETWEEN_TWEETS = 6 * 60 * 60 # 12 hours
 
@@ -15,16 +16,16 @@ class SinkuTheDuck:
 
     def __init__(self, credentials_path='credentials.json'):
         self.api = get_api(credentials_path)
+        self.quacker = Quacker()
         self.load()
-        # self.quacker = Quacker()
-    
+
     def save(self):
         with open('save.txt', 'w') as save_file:
             save_file.write(str(self.last_tweet_time) + "\n")
             save_file.write(str(self.since_id) + "\n")
 
     def post_tweet(self):
-        #TODO:
+        self.quacker.quack(self.api)
         pass
 
     def check_mentions(self):
@@ -34,7 +35,8 @@ class SinkuTheDuck:
     def load(self):
         if (not os.path.exists('save.txt')):
             self.last_tweet_time = int(time())
-            self.since_id = 1
+            tweet = self.api.user_timeline(screen_name = 'SinkuTheDuck', count = 1)[0]
+            self.since_id = tweet.id
             self.save()
             self.post_tweet()
             return
@@ -60,5 +62,4 @@ class SinkuTheDuck:
 
 
 s = SinkuTheDuck()
-print(s.last_tweet_time)
-print(s.since_id)
+s.run()
