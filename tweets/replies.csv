@@ -1,11 +1,11 @@
 message,has_media,media_path,repeats
-I can't read. so no.,false,,0
-I can't write.,false,,0
-I don't care.,false,,0
-quack!,false,,0
-can't read, won't read.,false,,0
-can't write, won't write,false,,0
-I gave you a like because I can't read!,false,,0
-one like for you!,false,,0
-like.,false,,0
-quack! I mean like!,false,,0
+I can't read. so no.,false,
+I can't write.,false,
+I don't care.,false,
+quack!,false,
+can't read. won't read.,false,
+can't write. won't write,false,
+I gave you a like because I can't read!,false,
+one like for you!,false,
+like.,false,
+quack! I mean like!,false,
