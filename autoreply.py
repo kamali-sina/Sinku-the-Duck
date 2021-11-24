@@ -9,8 +9,7 @@ def check_mentions(api, since_id, quacker):
         since = max(tweet.id, since)
         try:
             api.create_favorite(tweet.id)
-            api.update_status(status="type duck message here",
-                    in_reply_to_status_id=tweet.id)
+            quacker.post_tweet_reply(api, tweet.id)
         except:
             print('ERROR: can\'t like or tweet! help me!')
     return since
