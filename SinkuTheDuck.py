@@ -6,7 +6,7 @@ from config import get_api
 from autoreply import check_mentions
 from Quacker import Quacker
 
-TIME_BETWEEN_TWEETS = 6 * 60 * 60 # 12 hours
+TIME_BETWEEN_TWEETS = 5 * 60 * 60 # 12 hours
 
 class SinkuTheDuck:
     api = None
