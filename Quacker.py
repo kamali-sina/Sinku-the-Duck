@@ -5,7 +5,7 @@ from random import random
 MAIN_TWEETS_PATH = './tweets/main_tweets.csv'
 REPEATABLE_TWEETS_PATH = './tweets/repeatable_tweets.csv'
 REPLIES_PATH = './tweets/replies.csv'
-TWEET_RESETS = 3
+TWEET_RESETS = 2
 T_TEXT = 0
 T_MEDIA_BOOL = 1
 T_MEDIA_PATH = 2
