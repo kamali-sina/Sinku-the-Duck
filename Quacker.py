@@ -127,7 +127,8 @@ class Quacker:
         else:
             index = get_random_index(len(self.promo_trends))
             line = self.promo_trends[index]
-        self.__tweet_line(api, line[T_TEXT].replace(TREND_FIND, name))
+        line['T_TEXT'] = line[T_TEXT].replace(TREND_FIND, name)
+        self.__tweet_line(api, line)
 
     def save_main_tweets(self):
         with open(MAIN_TWEETS_PATH, 'w') as main_tweets_file:
