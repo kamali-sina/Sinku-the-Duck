@@ -1,7 +1,6 @@
 import tweepy
 
 def check_mentions(api, since_id, quacker):
-    print('reading mentions...')
     since = since_id
     for tweet in tweepy.Cursor(api.mentions_timeline, 
                                 since_id=since_id).items():

@@ -13,4 +13,3 @@ def get_api(credentials_path):
         print('AUTH failed!')
         exit()
     return api
-

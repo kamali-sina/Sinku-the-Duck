@@ -2,10 +2,11 @@ import csv
 import os
 from random import random
 
+
 MAIN_TWEETS_PATH = './tweets/main_tweets.csv'
 REPEATABLE_TWEETS_PATH = './tweets/repeatable_tweets.csv'
 REPLIES_PATH = './tweets/replies.csv'
-TWEET_RESETS = 2
+TWEET_RESETS = 1
 T_TEXT = 0
 T_MEDIA_BOOL = 1
 T_MEDIA_PATH = 2
@@ -13,6 +14,7 @@ T_EXTRA = 3
 FALSE_CSV = 'false'
 TRUE_CSV = 'true'
 SAVE_FILE = 'save_quack.txt'
+
 
 def read_csv(csv_path):
     fields = []
@@ -29,10 +31,12 @@ def get_random_index(lenght):
     return int(random() * lenght)
 
 
-"""
-    Handles duck tweets!
-"""
+
 class Quacker:
+    """
+    Handles duck tweets!
+    """
+
     main_tweets = None
     main_headers = None
     repeatable_tweets = None
