@@ -117,7 +117,7 @@ class Quacker:
                         in_reply_to=in_reply_to_status_id)
 
     def post_trend_tweet(self, api):
-        trend = get_latest_trend(self.api)
+        trend = get_latest_trend(api)
         name = trend['name']
         is_promo = trend['promoted_content']
         line = ''
