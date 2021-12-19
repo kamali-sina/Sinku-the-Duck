@@ -1,16 +1,20 @@
 import csv
 import os
 from random import random
+from trends import get_latest_trend
 
 
 MAIN_TWEETS_PATH = './tweets/main_tweets.csv'
 REPEATABLE_TWEETS_PATH = './tweets/repeatable_tweets.csv'
 REPLIES_PATH = './tweets/replies.csv'
-TWEET_RESETS = 1
+TREND_PATH = './tweets/trend_tweets.csv'
+PROMO_TREND_PATH = './tweets/promotional_trend_tweets.csv'
+TWEET_RESETS = 3
 T_TEXT = 0
 T_MEDIA_BOOL = 1
 T_MEDIA_PATH = 2
 T_EXTRA = 3
+TREND_FIND = '<###>'
 FALSE_CSV = 'false'
 TRUE_CSV = 'true'
 SAVE_FILE = 'save_quack.txt'
@@ -43,12 +47,16 @@ class Quacker:
     repeatable_headers = None
     replies = None
     replies_headers = None
+    trends = None
+    promo_trends = None
     main_tensor = []
 
     def __init__(self) -> None:
         self.main_tweets, self.main_headers = read_csv(MAIN_TWEETS_PATH)
         self.repeatable_tweets, self.repeatable_headers = read_csv(REPEATABLE_TWEETS_PATH)
         self.replies, self.replies_headers = read_csv(REPLIES_PATH)
+        self.trends, _ = read_csv(TREND_PATH)
+        self.promo_trends, _ = read_csv(PROMO_TREND_PATH)
         self.load_tweets_counter()
         self.make_main_tensor()
     
@@ -97,13 +105,29 @@ class Quacker:
             self.save()
         else:
             self.tweets_counter -= 1
-            self.post_repeatable_tweet(api)
+            if (self.tweets_counter % 2 == 1):
+                self.post_repeatable_tweet(api)
+            else:
+                self.post_trend_tweet(api)
             self.save()
     
     def post_tweet_reply(self, api, in_reply_to_status_id):
         index = get_random_index(len(self.replies))
         self.__tweet_line(api, self.replies[index], 
                         in_reply_to=in_reply_to_status_id)
+
+    def post_trend_tweet(self, api):
+        trend = get_latest_trend(self.api)
+        name = trend['name']
+        is_promo = trend['promoted_content']
+        line = ''
+        if (not is_promo):
+            index = get_random_index(len(self.trends))
+            line = self.trends[index]
+        else:
+            index = get_random_index(len(self.promo_trends))
+            line = self.promo_trends[index]
+        self.__tweet_line(api, line[T_TEXT].replace(TREND_FIND, name))
 
     def save_main_tweets(self):
         with open(MAIN_TWEETS_PATH, 'w') as main_tweets_file:
