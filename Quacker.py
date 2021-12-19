@@ -104,11 +104,11 @@ class Quacker:
             self.post_main_tweet(api)
             self.save()
         else:
-            self.tweets_counter -= 1
             if (self.tweets_counter % 2 == 1):
                 self.post_repeatable_tweet(api)
             else:
                 self.post_trend_tweet(api)
+            self.tweets_counter -= 1
             self.save()
     
     def post_tweet_reply(self, api, in_reply_to_status_id):
