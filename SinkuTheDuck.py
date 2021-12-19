@@ -26,7 +26,6 @@ class SinkuTheDuck:
 
     def post_tweet(self):
         self.quacker.quack(self.api)
-        pass
 
     def check_mentions(self):
         self.since_id = check_mentions(self.api, self.since_id, self.quacker)
@@ -62,4 +61,4 @@ class SinkuTheDuck:
 
 if __name__ == "__main__":
     s = SinkuTheDuck()
-    s.check_trends()
+    s.run()
