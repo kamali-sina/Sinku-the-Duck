@@ -1,6 +1,7 @@
 credentials.json
 save.txt
 save_quack.txt
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
